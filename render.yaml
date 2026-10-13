@@ -1,0 +1,19 @@
+services:
+  - type: web
+    name: anxin-pillbox
+    runtime: node
+    plan: free
+    buildCommand: npm test
+    startCommand: npm start
+    healthCheckPath: /healthz
+    envVars:
+      - key: NODE_VERSION
+        value: 22.16.0
+      - key: HOST
+        value: 0.0.0.0
+      - key: DEEPSEEK_MODEL
+        value: deepseek-flash
+      - key: AI_DAILY_LIMIT
+        value: 100
+      - key: DEEPSEEK_API_KEY
+        sync: false
