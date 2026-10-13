@@ -21,7 +21,7 @@ CADDY_VERSION=2.11.7
 curl --fail --location --retry 2 --connect-timeout 15 --max-time 180 "https://github.com/caddyserver/caddy/releases/download/v$CADDY_VERSION/caddy_${CADDY_VERSION}_linux_amd64.tar.gz" -o caddy.tar.gz
 curl --fail --location --retry 2 --max-time 30 "https://github.com/caddyserver/caddy/releases/download/v$CADDY_VERSION/caddy_${CADDY_VERSION}_checksums.txt" -o caddy-sha.txt
 CADDY_SHA=$(awk -v f="caddy_${CADDY_VERSION}_linux_amd64.tar.gz" '$2==f {print $1}' caddy-sha.txt)
-printf '%s  caddy.tar.gz\n' "$CADDY_SHA" | sha256sum -c -
+printf '%s  caddy.tar.gz\n' "$CADDY_SHA" | sha512sum -c -
 tar -xzf caddy.tar.gz caddy
 install -m 0755 caddy /usr/local/bin/caddy
 id anxin >/dev/null 2>&1 || useradd --system --home-dir /var/lib/anxin --create-home --shell /usr/sbin/nologin anxin
